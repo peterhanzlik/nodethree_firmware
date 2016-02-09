@@ -4,10 +4,11 @@ float get_ldr(void) {
   float val;
 
   DEBUG_LINE("LDR (phototransistor): ");
-  
+
   pinMode(A1, OUTPUT);
   pinMode(A2, INPUT);
   digitalWrite(A1, HIGH);
+
   Sleepy::loseSomeTime(100);
 
   for (int a = 0; a < 32; a++)
@@ -16,7 +17,9 @@ float get_ldr(void) {
     read_val += analogRead(A2);
   }
 
+  DEBUG_LINE("Turning LDR off");
   digitalWrite(A1, LOW);
+  pinMode(A1, INPUT);
 
   val = read_val / 32.0;
 

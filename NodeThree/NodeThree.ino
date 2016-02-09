@@ -124,7 +124,6 @@ void transmit() {
 #if DEBUG
   digitalWrite(LED_PIN, LOW);
   DEBUG_LINE("End of TX");
-  Serial.flush();
 #endif
 #endif
 }
