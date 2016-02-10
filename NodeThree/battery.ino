@@ -28,7 +28,7 @@ float get_battery(void) {
   DEBUG_LINE(val);
 #endif
 
-  memcpy(&data[3], &key, sizeof(int16_t));
+  memcpy(&data[3], &key, sizeof(uint16_t));
   memcpy(&data[5], &val, sizeof(float));
   return val;
 }

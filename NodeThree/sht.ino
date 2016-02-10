@@ -36,6 +36,6 @@ float get_humidity(void) {
   DEBUG_PRINT("Humidity: ");
   DEBUG_LINE(val);
 
-  memcpy(&data[3], &key, sizeof(int16_t));
+  memcpy(&data[3], &key, sizeof(uint16_t));
   memcpy(&data[5], &val, sizeof(float));
 }

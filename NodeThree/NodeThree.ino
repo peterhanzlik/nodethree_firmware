@@ -45,7 +45,7 @@ void setup() {
   digitalWrite(LED_PIN, HIGH);
 
   Wire.begin();
-  
+
 #if DEBUG
   Serial.begin(115200);
   DEBUG_LINE("DEBUG MODE");
@@ -56,9 +56,7 @@ void setup() {
 #if RADIO_ON
   if (!rf95.init()) {
     while (true) {
-#if DEBUG
       DEBUG_LINE("debug|init of rfm module failed");
-#endif
       digitalWrite(LED_PIN, HIGH);
       Sleepy::loseSomeTime(300);
       digitalWrite(LED_PIN, LOW);
@@ -66,12 +64,12 @@ void setup() {
     }
   } else {
     rf95.setFrequency(868.0);
-#if DEBUG
+    rf95.setTxPower(13);
     DEBUG_LINE("debug|init OK");
-#endif
   }
-  Sleepy::loseSomeTime(300);
-  // rf95.printRegisters();
+#if DEBUG
+  rf95.printRegisters();
+#endif
   Sleepy::loseSomeTime(1000);
 #endif
 
@@ -97,12 +95,12 @@ void loop() {
   transmit();
   Sleepy::loseSomeTime(50000);
 
-//  if (this_loop > 100) {
-    get_battery();
-    transmit();
-    Sleepy::loseSomeTime(50000);
-    this_loop = 0;
-//  }
+  //  if (this_loop > 100) {
+  get_battery();
+  transmit();
+  Sleepy::loseSomeTime(50000);
+  this_loop = 0;
+  //  }
 }
 
 void transmit() {
