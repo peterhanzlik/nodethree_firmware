@@ -1,3 +1,10 @@
+/* * *  CONFIG * * */
+
+// Define serial number based on the sticker located at the bottom of the senzor
+#define SERIAL 1
+
+/* * * * * * * * * */
+
 #define LED_PIN 4
 #define VREF_EN_PIN 8
 
@@ -23,7 +30,7 @@
 
 uint8_t data[9] = { 0x80, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
 
-uint32_t serial = 1;
+uint32_t serial = SERIAL;
 int this_loop = 0;
 
 ISR(WDT_vect) {
